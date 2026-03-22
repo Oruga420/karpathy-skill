@@ -123,9 +123,23 @@ LOOP:
   13. Go to step 1
 ```
 
-### Step 5 — Continuous Learning
+### Step 5 — Local Learning Layer (GPU-Accelerated)
 
-The analyst maintains `karpathy_learnings.md` with:
+If a GPU is detected (`nvidia-smi` succeeds), activate the local learning layer
+across ALL domains — not just ML. See `program_templates/local_learning_layer.md`.
+
+After 20+ experiments in results.tsv, train a mini predictor model on the local GPU:
+- Input: encoded experiment features (category, change size, current metric, history)
+- Output: P(keep) — probability the experiment will improve the metric
+- Training: ~5-10 seconds, <500MB VRAM
+- The researcher uses P(keep) to rank proposals: try high-probability experiments first
+- The model retrains every 10 experiments and improves over time
+
+This turns the loop from "smart guessing" into "data-driven prediction" for ANY domain.
+
+### Step 6 — Continuous Learning (Text-Based)
+
+The analyst also maintains `karpathy_learnings.md` with:
 - What works in this domain/project
 - What doesn't work
 - Patterns discovered
@@ -142,6 +156,9 @@ Load the appropriate template based on detected domain:
 - **Ad Optimization**: `~/.claude/skills/karpathy/program_templates/ad_optimization.md`
 - **Code Quality**: `~/.claude/skills/karpathy/program_templates/code_quality.md`
 - **Custom**: `~/.claude/skills/karpathy/program_templates/custom.md`
+
+**Cross-cutting (auto-activated when GPU available + 20 experiments):**
+- **Local Learning Layer**: `~/.claude/skills/karpathy/program_templates/local_learning_layer.md`
 
 ## Combining with Other Skills
 
