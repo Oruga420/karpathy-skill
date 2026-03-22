@@ -18,7 +18,8 @@ Inspired by [Karpathy's autoresearch](https://github.com/karpathy/autoresearch):
 
 Read the current project context and determine:
 
-1. **Domain**: What type of project is this? (web, ads, code, ML, custom)
+1. **Domain**: What type of project is this? (ml, web, ads, code, custom)
+   - If ML domain: run `nvidia-smi` to detect GPU, auto-tune hyperparameters for available VRAM
 2. **Metric**: What are we optimizing? Ask the user if unclear.
 3. **Metric direction**: Is lower better (load time, errors) or higher better (score, CTR)?
 4. **Target files**: What files/systems can be modified?
@@ -136,6 +137,7 @@ The researcher reads this file before every proposal to avoid repeating mistakes
 
 Load the appropriate template based on detected domain:
 
+- **ML Training (Local GPU)**: `~/.claude/skills/karpathy/program_templates/ml_training.md`
 - **Web Performance**: `~/.claude/skills/karpathy/program_templates/web_performance.md`
 - **Ad Optimization**: `~/.claude/skills/karpathy/program_templates/ad_optimization.md`
 - **Code Quality**: `~/.claude/skills/karpathy/program_templates/code_quality.md`
