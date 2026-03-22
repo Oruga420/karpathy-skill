@@ -1,0 +1,8 @@
+.env
+*.log
+results.tsv
+karpathy_learnings.md
+karpathy_baseline.log
+node_modules/
+__pycache__/
+.DS_Store
